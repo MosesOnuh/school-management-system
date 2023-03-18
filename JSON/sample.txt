@@ -1,0 +1,37 @@
+
+//Students sample 
+{
+	"name": "moses",
+	"sex": "male"
+}
+{
+	"name": "princess",
+	"sex": "female"
+}
+
+{
+	"name": "onuh",
+	"sex": "male"
+}
+
+//Courses sample
+{
+	"title" : "engineering mathematics",
+	"unit" : 3,
+	"semester": 1
+}
+
+{
+	"title" : "food nutrition",
+	"unit" : 2,
+	"semester": 2
+}
+
+//student Courses
+
+{
+	"student_id" : 1,
+	"course_id" : 1
+}
+"student_id"`
+	CourseId  int64     `json:"course_id"`

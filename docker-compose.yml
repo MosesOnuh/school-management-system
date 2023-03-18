@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  webapp:
+    build:      
+      context: .
+    restart: always
+    ports:
+      - "8080:8080"
+    env_file: .env
+    deploy:
+      mode: replicated
+      replicas: 1
+    depends_on:
+      - db
+    volumes:
+      - .:/opt/webapp
+    # networks:
+    #   - app_connect
+
+  db:
+    image: mysql:latest
+    ports:
+      - "3305:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: user
+      MYSQL_USER: user
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: school_management
+    volumes:
+      # - ./init-script.sql:/docker-entrypoint-initdb.d/init-script.sql
+      - ./init:/docker-entrypoint-initdb.d
+      - .:/var/lib
+      - ./dbdata:/var/lib/mysql
+      - ./mysql-files:/var/lib/mysql-files
+    # networks:
+    #   - app_connect
+
+# networks:
+#   app_connect:
+#     external: true
